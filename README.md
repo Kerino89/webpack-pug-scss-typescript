@@ -1,1 +1,1 @@
-"# Webpack Pug Scss Typescript" 
+# Webpack Pug Scss Typescript
