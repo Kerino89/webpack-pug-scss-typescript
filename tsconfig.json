@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "rootDir": "src",
+    "sourceMap": true,
+    "module": "ESNext",
+    "target": "ES5",
+    "lib": ["ES2015", "ES2016", "ES2017", "ES2018", "DOM", "DOM.Iterable"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "build"]
+}
