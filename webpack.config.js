@@ -1,4 +1,4 @@
-const { resolve, join } = require("path");
+const { resolve } = require("path");
 const { readdirSync } = require("fs");
 
 const {
@@ -12,10 +12,11 @@ const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const NotifierPlugin = require("friendly-errors-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const LiveReloadPlugin = require("webpack-livereload-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const notifier = require("node-notifier");
 
-const PAGES_DIR = join(__dirname, "src", "views");
+const PAGES_DIR = resolve(__dirname, "src", "pug", "pages");
 const PAGES = readdirSync(PAGES_DIR).filter(fileName =>
   fileName.endsWith(".pug"),
 );
@@ -32,6 +33,7 @@ module.exports = (env, argv) => {
     output: {
       path: resolve(__dirname, "build"),
       filename: "js/[name].js",
+      publicPath: "/",
     },
 
     plugins: [
@@ -115,6 +117,8 @@ module.exports = (env, argv) => {
           filename: "css/[name].css",
           chunkFilename: "css/[name].chunk.css",
         }),
+
+      !IS_PROD && new LiveReloadPlugin({ appendScriptTag: true }),
     ].filter(Boolean),
 
     devtool: !IS_PROD ? "cheap-module-source-map" : "none",
