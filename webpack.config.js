@@ -28,10 +28,12 @@ module.exports = (env, argv) => {
   const config = {
     mode: argv.mode || "development",
 
+    context: resolve(__dirname, "src"),
+
     entry: resolve(__dirname, "src", "typescript", "main.ts"),
 
     output: {
-      path: resolve(__dirname, "build"),
+      path: IS_PROD ? resolve(__dirname, "build") : undefined,
       filename: "js/[name].js",
       publicPath: "/",
     },
@@ -51,7 +53,7 @@ module.exports = (env, argv) => {
           }
 
           const error = errors[0];
-
+          ``;
           notifier.notify({
             title: "Webpack error",
             message: severity + ":" + error.name,
@@ -283,6 +285,10 @@ module.exports = (env, argv) => {
           ],
         },
       ],
+    },
+
+    resolve: {
+      extensions: [".ts", ".js", ".scss", ".json"],
     },
 
     performance: false,
