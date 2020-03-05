@@ -211,7 +211,14 @@ module.exports = (env, argv) => {
             {
               test: /\.(sc|sa|c)ss$/,
               use: [
-                !IS_PROD ? "style-loader" : MiniCssExtractPlugin.loader,
+                !IS_PROD
+                  ? "style-loader"
+                  : {
+                      loader: MiniCssExtractPlugin.loader,
+                      options: {
+                        publicPath: "../",
+                      },
+                    },
                 {
                   loader: "css-loader",
                   options: {
