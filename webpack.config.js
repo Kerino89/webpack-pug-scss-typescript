@@ -35,7 +35,7 @@ module.exports = (env, argv) => {
     output: {
       path: IS_PROD ? resolve(__dirname, "build") : undefined,
       filename: "js/[name].js",
-      publicPath: "/",
+      publicPath: IS_PROD ? "./" : "/",
     },
 
     plugins: [
