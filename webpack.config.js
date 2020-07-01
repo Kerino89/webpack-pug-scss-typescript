@@ -202,6 +202,12 @@ module.exports = (env, argv) => {
                     transpileOnly: true,
                   },
                 },
+                {
+                  loader: "eslint-loader",
+                  options: {
+                    cache: true,
+                  },
+                },
               ],
             },
             {
