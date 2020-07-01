@@ -266,20 +266,33 @@ module.exports = (env, argv) => {
                     outputPath: "images",
                   },
                 },
-              ],
-            },
-            {
-              test: /\.svg$/,
-              use: [
-                { loader: "file-loader" },
                 {
-                  loader: "svgo-loader",
+                  loader: "image-webpack-loader",
                   options: {
-                    plugins: [
-                      { removeTitle: true },
-                      { convertColors: { shorthex: false } },
-                      { convertPathData: false },
-                    ],
+                    mozjpeg: {
+                      progressive: true,
+                      quality: 65,
+                    },
+                    optipng: {
+                      enabled: false,
+                    },
+                    pngquant: {
+                      quality: [0.65, 0.9],
+                      speed: 4,
+                    },
+                    svgo: {
+                      plugins: [
+                        { removeTitle: true },
+                        { convertColors: { shorthex: false } },
+                        { convertPathData: false },
+                      ],
+                    },
+                    gifsicle: {
+                      interlaced: false,
+                    },
+                    webp: {
+                      enabled: false,
+                    },
                   },
                 },
               ],
