@@ -53,7 +53,6 @@ module.exports = (env, argv) => {
           }
 
           const error = errors[0];
-          ``;
           notifier.notify({
             title: "Webpack error",
             message: severity + ":" + error.name,
@@ -66,19 +65,9 @@ module.exports = (env, argv) => {
 
       new ForkTsCheckerWebpackPlugin({
         async: !IS_PROD,
-        useTypescriptIncrementalApi: true,
-        checkSyntacticErrors: true,
-        tsconfig: resolve(__dirname, "tsconfig.json"),
-        reportFiles: [
-          "**",
-          "!**/*.json",
-          "!**/__tests__/**",
-          "!**/?(*.)(spec|test).*",
-          "!**/src/setupProxy.*",
-          "!**/src/setupTests.*",
-        ],
-        watch: resolve(__dirname, "src"),
-        silent: true,
+        typescript: {
+          configFile: resolve(__dirname, "tsconfig.json")
+        }
       }),
 
       ...PAGES.map(
@@ -229,18 +218,19 @@ module.exports = (env, argv) => {
                   loader: "css-loader",
                   options: {
                     sourceMap: true,
-                    importLoaders: 1,
+                    importLoaders: 2,
                   },
                 },
                 {
                   loader: "postcss-loader",
                   options: {
-                    ident: "postcss",
-                    plugins: () =>
-                      [
+                    postcssOptions: {
+                      plugins: [
                         require("postcss-flexbugs-fixes"),
                         require("autoprefixer"),
-                      ].filter(Boolean),
+                        require("postcss-preset-env")({ stage: 3 }),
+                      ],
+                    }
                   },
                 },
                 {
