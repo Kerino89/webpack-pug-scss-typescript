@@ -1,7 +1,16 @@
 {
+  "ts-node": {
+    "files": false,
+    "compilerOptions": {
+      "module": "CommonJS",
+      "target": "ESNext",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true
+    }
+  },
   "compilerOptions": {
     "baseUrl": "./src/",
-    "rootDir": "src",
+    "rootDir": ".",
     "sourceMap": true,
     "module": "ESNext",
     "target": "ES5",
@@ -17,6 +26,5 @@
     "emitDecoratorMetadata": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["src"],
   "exclude": ["node_modules", "build"]
 }
