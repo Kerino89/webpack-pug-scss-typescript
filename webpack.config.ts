@@ -176,6 +176,7 @@ export default (
         },
       ],
     },
+    // @ts-ignore
     plugins: [
       IS_PROD && new CleanWebpackPlugin(),
       new WatchIgnorePlugin({ paths: [/\.js$/, /\.d\.ts$/] }),
@@ -216,7 +217,7 @@ export default (
         }),
 
       new EslintWebpackPlugin(),
-    ].filter(Boolean) as Configuration["plugins"],
+    ].filter(Boolean),
     performance: false,
   };
 };
