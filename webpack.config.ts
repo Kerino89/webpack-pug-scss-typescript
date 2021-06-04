@@ -38,7 +38,8 @@ export default (
     entry: ENTRY_PATH,
     output: {
       path: IS_PROD ? BUILD_PATH : "/",
-      filename: "js/[name].js",
+      filename: "assets/js/[name].js",
+      chunkFilename: "assets/js/[id].chunk.js",
       publicPath: IS_PROD ? "./" : "/",
       assetModuleFilename: ".",
     },
@@ -130,7 +131,7 @@ export default (
                 },
               },
               generator: {
-                filename: "images/[name][ext]",
+                filename: "assets/images/[name][ext]",
               },
               use: [
                 {
@@ -212,8 +213,8 @@ export default (
 
       IS_PROD &&
         new MiniCssExtractPlugin({
-          filename: "css/[name].css",
-          chunkFilename: "css/[name].chunk.css",
+          filename: "assets/css/[name].css",
+          chunkFilename: "assets/css/[name].chunk.css",
         }),
 
       new EslintWebpackPlugin(),
