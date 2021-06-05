@@ -6,6 +6,7 @@ import TerserWebpackPlugin from "terser-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import LiveReloadPlugin from "webpack-livereload-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { WatchIgnorePlugin } from "webpack";
 
@@ -216,6 +217,8 @@ export default (
           filename: "assets/css/[name].css",
           chunkFilename: "assets/css/[name].chunk.css",
         }),
+
+      !IS_PROD && new LiveReloadPlugin({ appendScriptTag: true }),
 
       new EslintWebpackPlugin(),
     ].filter(Boolean),
